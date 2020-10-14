@@ -256,7 +256,18 @@ public class StudentBrowser extends javax.swing.JFrame {
     }//GEN-LAST:event_btnaddActionPerformed
 
     private void btnmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodifyActionPerformed
-        // TODO add your handling code here:
+        StudentPopUp sp = new StudentPopUp(this,true); //popup form
+        sp.setForm(s[currentstudent]);
+        sp.setModal(true);
+        sp.setLocationRelativeTo(this);
+        sp.setVisible(true);
+        Student temp = sp.getStudent();
+        String em = temp.validateData();
+        if (em == null){
+            s[currentstudent] = temp;
+            showStudent(); // update display
+        }
+        
     }//GEN-LAST:event_btnmodifyActionPerformed
 
     private void btnleftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnleftActionPerformed
@@ -314,7 +325,7 @@ public class StudentBrowser extends javax.swing.JFrame {
         txtmark3.setText("" + s[currentstudent].getMark(3));
         lblaverage.setText("" + s[currentstudent].getAverage());
         lblcount.setText("" + size);
-        lblindex.setText("" + currentstudent);
+        lblindex.setText("" + (currentstudent + 1));
     }
 
     public static void main(String args[]) {
